@@ -5,6 +5,12 @@ from streamlit_extras.add_vertical_space import add_vertical_space
 from hugchat import hugchat
 
 chatbot = hugchat.ChatBot(cookie_path="cookies.json")
+# Create a new conversation
+id = chatbot.new_conversation()
+chatbot.change_conversation(id)
+
+# Get conversation list
+conversation_list = chatbot.get_conversation_list()
 
 st.set_page_config(page_title="HugChat - An LLM-powered Streamlit app")
 
@@ -48,7 +54,12 @@ with input_container:
 # Response output
 ## Function for taking user prompt as input followed by producing AI generated responses
 def generate_response(prompt):
-    chatbot = hugchat.ChatBot()
+    chatbot = hugchat.ChatBot(cookie_path="cookies.json")
+    # Create a new conversation
+    id = chatbot.new_conversation()
+    chatbot.change_conversation(id)
+    # Get conversation list
+    conversation_list = chatbot.get_conversation_list()
     response = chatbot.chat(prompt)
     return response
 
